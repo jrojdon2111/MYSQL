@@ -20,6 +20,8 @@ function Form({ action, title, articulo, disabled }) {
             </fieldset>
             <button type='submit'>{title}</button>
         </form>
+
+
     )
 }
 

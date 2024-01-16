@@ -4,7 +4,7 @@ export const db = mysql({
     config: {
         host: 'localhost',
         user: 'root',
-        password: 'root',
+        password: '',
         port: 3306,
         database: 'datos'
     }

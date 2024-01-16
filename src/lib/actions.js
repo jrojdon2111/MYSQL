@@ -10,7 +10,7 @@ export async function getArticulos() {
     return results;
   } catch (error) {
     // console.log(error);  
-    return null;    
+    return null;
   }
 }
 
@@ -38,7 +38,7 @@ export async function editArticulo(formData) {
 
   try {
     const query = 'update articulos set ? where id = ? ';
-    const results = await db.query(query, [{nombre, descripcion, precio}, id]);
+    const results = await db.query(query, [{ nombre, descripcion, precio }, id]);
     console.log(results);
   } catch (error) {
     console.log(error);
@@ -57,4 +57,69 @@ export async function deleteArticulo(formData) {
     console.log(error);
   }
   redirect('/articulos');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+export async function getproveedores() {
+  try {
+    const results = await db.query('select * from proveedores');
+    // console.log(results);
+    return results;
+  } catch (error) {
+    // console.log(error);  
+    return null;
+  }
+}
+
+export async function newproveedores(formData) {
+  try {
+    const nombre = formData.get('nombre');
+    const telefono = formData.get('telefono');
+
+    const query = 'insert into proveedores(nombre,telefono) values (?, ?)';
+    const results = await db.query(query, [nombre, telefono]);
+    console.log(results);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect('/proveedores');
+}
+
+
+export async function editproveedores(formData) {
+  const id = formData.get('id')
+  const nombre = formData.get('nombre')
+  const telefono = formData.get('telefono')
+
+  try {
+    const query = 'update proveedores set ? where id = ? ';
+    const results = await db.query(query, [{ nombre, telefono }, id]);
+    console.log(results);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect('/proveedores');
+}
+
+export async function deleteproveedores(formData) {
+  try {
+    const id = formData.get('id');
+
+    const query = 'delete from proveedores where id = ?';
+    const results = await db.query(query, [id]);
+    console.log(results);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect('/proveedores');
 }
